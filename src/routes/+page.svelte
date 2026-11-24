@@ -25,7 +25,7 @@
 		<p class="tagline" use:settle style:--fw="760">Some words weigh more than others.</p>
 		<div class="sample">
 			<span class="label">A sentence, already weighed — PPL {fmt(HERO.perplexity, 3)} · Qwen2.5-0.5B</span>
-			<WeightedLine tokens={HERO.tokens} size="clamp(30px, 3.8vw, 64px)" stagger={70} label="Sample sentence: {HERO.text}" />
+			<WeightedLine tokens={HERO.tokens} size="clamp(22px, 6.2cqi, 64px)" stagger={70} label="Sample sentence: {HERO.text}" />
 			<p class="note">
 				The heaviest word is <b class="mono">“{top.token.trim()}”</b> at P = {fmt(top.p, 2)}: the model least expected it.
 			</p>
@@ -77,6 +77,9 @@
 	}
 	.sample {
 		grid-column: 5 / -1;
+		/* the sentence is sized from this column (cqi), so it wraps to ~2 lines instead of overflowing */
+		container-type: inline-size;
+		min-width: 0;
 		display: grid;
 		gap: 10px;
 		border-top: 1.5px solid var(--ink);
